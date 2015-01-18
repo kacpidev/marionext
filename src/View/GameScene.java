@@ -29,8 +29,9 @@ public class GameScene extends JPanel {
 	 */
 	public GameScene()
 	{
-		this.gameObjects = new Vector<GameObject>();
-		gameObjects.addElement(new Brick(new Vector2(0,240)));
+		staticGameObjects = new Vector<GameObject>();
+		dynamicGameObjects = new Vector<GameObject>();
+		staticGameObjects.addElement(new Brick(new Vector2(0,240)));
 	}
 	
 	/*
