@@ -44,4 +44,8 @@ abstract public class GameObject {
 	{
 		return image;
 	}
+
+	public void update(float deltaTime) {
+		this.x += 1 * deltaTime;
+	}
 }

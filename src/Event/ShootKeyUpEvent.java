@@ -8,6 +8,6 @@ package Event;
  */
 
 
-public class ShootKeyEvent extends MarioEvent {
+public class ShootKeyUpEvent extends MarioEvent {
 
 }

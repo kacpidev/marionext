@@ -7,6 +7,6 @@ package Event;
  */
 
 
-public class LeftKeyEvent extends MarioEvent {
+public class LeftKeyDownEvent extends MarioEvent {
 
 }

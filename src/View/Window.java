@@ -30,12 +30,12 @@ public class Window extends JFrame {
 		minimumSize.setSize(640, 480);
 		setMinimumSize(minimumSize);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setVisible(true);
 		setResizable(false);
 		setLayout(new BorderLayout());
 	
 		gameScene = new GameScene();
 		gameScene.addKeyListener(new KeyboardListener(eventQueue));
+		gameScene.setVisible(true);
 		add(gameScene, BorderLayout.CENTER);
 	}
 

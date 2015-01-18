@@ -5,9 +5,11 @@ import java.util.Map;
 import java.util.concurrent.BlockingQueue;
 
 import Event.MarioEvent;
+import Event.TimerEvent;
 import Model.MarioModel;
 import View.MarioView;
-import Actions.MarioAction;;
+import Actions.MarioAction;
+import Actions.TimerAction;
 /*
  * kontroler aplikacji
  * s³u¿y do komunikacji z widokiem i modelem
@@ -46,7 +48,7 @@ public class MarioController
 	 */
 	private void connectEventsWithActions()
 	{
-				
+		eventAction.put(TimerEvent.class, new TimerAction());
 	}
 	
 	public void control() throws RuntimeException, InterruptedException

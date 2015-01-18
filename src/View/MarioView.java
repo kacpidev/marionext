@@ -70,10 +70,13 @@ public class MarioView
 	{
 		this.eventQueue = eventQueue;
 		window = new Window(eventQueue);
+		window.setVisible(true);
 		refresh();
 		timerListener = new TimerListener(eventQueue);
-		timer = new Timer(1/FPS * 1000, timerListener);
+		timer = new Timer(100, timerListener);
 		timer.setRepeats(true);
+		timer.start();				
+
 	}
 	
 	public void refresh()

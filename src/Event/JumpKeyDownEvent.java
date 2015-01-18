@@ -6,6 +6,6 @@ package Event;
  * @author Kacper
  */
 
-public class JumpKeyEvent extends MarioEvent {
+public class JumpKeyDownEvent extends MarioEvent {
 
 }

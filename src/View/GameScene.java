@@ -8,6 +8,7 @@ import java.util.Vector;
 import javax.swing.*;
 
 import Model.Brick;
+import Model.GameObject;
 
 /*
  * klasa przedstawiaj¹ca w widoku poziom
@@ -16,7 +17,7 @@ import Model.Brick;
 public class GameScene extends JPanel {
 
 	private static final long serialVersionUID = 3L;
-	private Vector<Brick> gameObjects;
+	private Vector<GameObject> gameObjects;
 	
 	/*
 	 * Konstruktor
@@ -25,9 +26,11 @@ public class GameScene extends JPanel {
 	 */
 	public GameScene()
 	{
-		gameObjects = new Vector<Brick>();
+		gameObjects = new Vector<GameObject>();
 		setBounds(0,0,1,1);
-		gameObjects.add(new Brick(10,10));
+		for (int i = 0; i < 10; ++i){
+			gameObjects.add(new Brick(i*64,240));
+		}
 	}
 	
 	/*
@@ -40,14 +43,12 @@ public class GameScene extends JPanel {
         graphics.fillRect(0, 0, 640, 480);
 	}
 	
-	@Override
 	public void paint(final Graphics graphics)
 	{
-		System.out.println("painting");
 		super.paintComponent(graphics);
 		drawBackground(graphics);
 		
-		for (Brick gameObject : gameObjects)
+		for (GameObject gameObject : gameObjects)
 		{
 			Image image = gameObject.getImage();
 			int x = gameObject.getX();
