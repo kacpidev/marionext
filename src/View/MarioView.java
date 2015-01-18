@@ -2,6 +2,7 @@ package View;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Vector;
 import java.util.concurrent.BlockingQueue;
 
 import javax.swing.SwingUtilities;
@@ -9,6 +10,7 @@ import javax.swing.Timer;
 
 import Event.MarioEvent;
 import Event.TimerEvent;
+import Model.GameObject;
 
 /*
  * widok aplikacji

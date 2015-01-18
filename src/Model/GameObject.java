@@ -2,6 +2,8 @@ package Model;
 
 import java.awt.Image;
 
+import Utilities.Vector2;
+
 /*
  * klasa reprezentuj¹ca obiekt gry - sprite'a - przechowuje informacje o obrazku, jego po³o¿eniu 
  * i posiada metody s³u¿¹ce jego poruszaniu
@@ -11,17 +13,11 @@ abstract public class GameObject {
 	
 	protected Image image;
 	
-	protected int x;
-	protected int y;
+	protected Vector2 position;
 	
-	public int getX()
+	public Vector2 getPosition()
 	{
-		return x;
-	}
-	
-	public int getY()
-	{
-		return y;
+		return position;
 	}
 	
 	/*
@@ -29,10 +25,9 @@ abstract public class GameObject {
 	 * 
 	 * @author Kacper
 	 */
-	public void setPosition(int x, int y)
+	public void setPosition(Vector2 position)
 	{
-		this.x = x;
-		this.y = y;
+		this.position = position;
 	}
 
 	/*
@@ -45,7 +40,7 @@ abstract public class GameObject {
 		return image;
 	}
 
-	public void update(float deltaTime) {
-		this.x += 1 * deltaTime;
+	public void update(float deltaTime) 
+	{
 	}
 }

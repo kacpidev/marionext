@@ -1,10 +1,13 @@
 package View;
 
 import java.awt.*;
+import java.util.Vector;
 import java.util.concurrent.BlockingQueue;
+
 import javax.swing.*;
 
 import Event.MarioEvent;
+import Model.GameObject;
 
 public class Window extends JFrame {
 	
@@ -41,6 +44,8 @@ public class Window extends JFrame {
 
 	public void draw() {
 		System.out.println("draw");
+		gameScene.update();
 		gameScene.repaint();
 	}
+
 }

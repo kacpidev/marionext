@@ -2,13 +2,15 @@ package View;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Image;
 import java.util.Vector;
 
-import javax.swing.*;
+import javax.swing.JPanel;
 
 import Model.Brick;
 import Model.GameObject;
+import Utilities.Vector2;
 
 /*
  * klasa przedstawiaj¹ca w widoku poziom
@@ -17,7 +19,8 @@ import Model.GameObject;
 public class GameScene extends JPanel {
 
 	private static final long serialVersionUID = 3L;
-	private Vector<GameObject> gameObjects;
+	private Vector<GameObject> staticGameObjects;
+	private Vector<GameObject> dynamicGameObjects;
 	
 	/*
 	 * Konstruktor
@@ -26,11 +29,8 @@ public class GameScene extends JPanel {
 	 */
 	public GameScene()
 	{
-		gameObjects = new Vector<GameObject>();
-		setBounds(0,0,1,1);
-		for (int i = 0; i < 10; ++i){
-			gameObjects.add(new Brick(i*64,240));
-		}
+		this.gameObjects = new Vector<GameObject>();
+		gameObjects.addElement(new Brick(new Vector2(0,240)));
 	}
 	
 	/*
@@ -43,17 +43,29 @@ public class GameScene extends JPanel {
         graphics.fillRect(0, 0, 640, 480);
 	}
 	
+	public void update(){
+		for (GameObject gameObject : dynamicGameObjects)
+		{
+			gameObject.update(0.01f);
+		}
+	}
+	
 	public void paint(final Graphics graphics)
 	{
 		super.paintComponent(graphics);
 		drawBackground(graphics);
-		
+		drawObjects(staticGameObjects, graphics);
+		drawObjects(dynamicGameObjects, graphics);
+    }
+	
+	public void drawObjects(Vector<GameObject> gameObjects, Graphics graphics)
+	{
 		for (GameObject gameObject : gameObjects)
 		{
 			Image image = gameObject.getImage();
-			int x = gameObject.getX();
-			int y = gameObject.getY();
+			int x = gameObject.getPosition().getX();
+			int y = gameObject.getPosition().getY();
 			graphics.drawImage(image, x, y, null);
-		}
-    }
+		}	
+	}
 }
