@@ -4,12 +4,20 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.BlockingQueue;
 
+import Actions.JumpAction;
+import Actions.MarioAction;
+import Actions.MoveInputAction;
+import Actions.TimerAction;
+import Event.JumpKeyDownEvent;
+import Event.LeftKeyDownEvent;
+import Event.LeftKeyUpEvent;
 import Event.MarioEvent;
+import Event.RightKeyDownEvent;
+import Event.RightKeyUpEvent;
 import Event.TimerEvent;
 import Model.MarioModel;
+import Utilities.Vector2;
 import View.MarioView;
-import Actions.MarioAction;
-import Actions.TimerAction;
 /*
  * kontroler aplikacji
  * s³u¿y do komunikacji z widokiem i modelem
@@ -49,6 +57,11 @@ public class MarioController
 	private void connectEventsWithActions()
 	{
 		eventAction.put(TimerEvent.class, new TimerAction());
+		eventAction.put(LeftKeyDownEvent.class, new MoveInputAction(new Vector2(-1,0)));
+		eventAction.put(LeftKeyUpEvent.class, new MoveInputAction(new Vector2(0,0)));
+		eventAction.put(RightKeyDownEvent.class, new MoveInputAction(new Vector2(1,0)));
+		eventAction.put(RightKeyUpEvent.class, new MoveInputAction(new Vector2(0,0)));
+		eventAction.put(JumpKeyDownEvent.class, new JumpAction());
 	}
 	
 	public void control() throws RuntimeException, InterruptedException

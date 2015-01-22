@@ -3,17 +3,12 @@ package View;
 import java.awt.event.*;
 import java.util.concurrent.BlockingQueue;
 
-import Event.DownKeyDownEvent;
-import Event.DownKeyUpEvent;
 import Event.JumpKeyDownEvent;
-import Event.JumpKeyUpEvent;
 import Event.LeftKeyDownEvent;
 import Event.LeftKeyUpEvent;
 import Event.MarioEvent;
 import Event.RightKeyDownEvent;
 import Event.RightKeyUpEvent;
-import Event.ShootKeyDownEvent;
-import Event.ShootKeyUpEvent;
 
 /*
  * klasa s³uchaj¹ca aktywnoœci myszy w ich wyniku 
@@ -37,6 +32,7 @@ public class KeyboardListener extends KeyAdapter {
 		super();
 		this.eventQueue = eventQueue;
 	}
+
 	
 	public void keyPressed(final KeyEvent event)
 	{
@@ -53,14 +49,6 @@ public class KeyboardListener extends KeyAdapter {
 			if(event.getKeyCode() == KeyEvent.VK_UP)
 			{
 				eventQueue.put(new JumpKeyDownEvent());
-			}
-			if(event.getKeyCode() == KeyEvent.VK_DOWN)
-			{
-				eventQueue.put(new DownKeyDownEvent());
-			}
-			if(event.getKeyCode() == KeyEvent.VK_SPACE)
-			{
-				eventQueue.put(new ShootKeyDownEvent());
 			}
 		}
 		catch(Exception e)
@@ -81,18 +69,6 @@ public class KeyboardListener extends KeyAdapter {
 			if(event.getKeyCode() == KeyEvent.VK_RIGHT)
 			{
 				eventQueue.put(new RightKeyUpEvent());
-			}
-			if(event.getKeyCode() == KeyEvent.VK_UP)
-			{
-				eventQueue.put(new JumpKeyUpEvent());
-			}
-			if(event.getKeyCode() == KeyEvent.VK_DOWN)
-			{
-				eventQueue.put(new DownKeyUpEvent());
-			}
-			if(event.getKeyCode() == KeyEvent.VK_SPACE)
-			{
-				eventQueue.put(new ShootKeyUpEvent());
 			}
 		}
 		catch(Exception e)

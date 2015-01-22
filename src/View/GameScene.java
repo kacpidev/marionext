@@ -12,6 +12,8 @@ import javax.swing.JPanel;
 
 import Model.Brick;
 import Model.GameObject;
+import Model.Player;
+import Utilities.GameData;
 import Utilities.Vector2;
 
 /*
@@ -23,7 +25,7 @@ public class GameScene extends JPanel {
 	private static final long serialVersionUID = 3L;
 	private Map<Class<? extends GameObject>, Vector2> gameObjects = new HashMap<Class<? extends GameObject>, Vector2>();
 	private final Map<Class<? extends GameObject>, Image> drawBinding = new HashMap<Class<? extends GameObject>, Image>();
-		
+	private Vector2 offset;
 	/*
 	 * Konstruktor
 	 * 
@@ -31,8 +33,8 @@ public class GameScene extends JPanel {
 	 */
 	public GameScene()
 	{
-		Image image = new ImageIcon("C:\\_PROJECTS\\JAVA\\Mario\\src\\Brick.png").getImage();
-		drawBinding.put(Brick.class, image);
+		drawBinding.put(Player.class, new ImageIcon("C:\\_PROJECTS\\JAVA\\Mario\\src\\View\\Resources\\Mario.png").getImage());
+		drawBinding.put(Brick.class, new ImageIcon("C:\\_PROJECTS\\JAVA\\Mario\\src\\Brick.png").getImage());
 	}
 	
 	/*
@@ -45,9 +47,10 @@ public class GameScene extends JPanel {
         graphics.fillRect(0, 0, 640, 480);
 	}
 		
-	public void draw(final Map<Class<? extends GameObject>, Vector2> gameObjects)
+	public void draw(final GameData gameData)
 	{
-		this.gameObjects = gameObjects;
+		this.gameObjects = gameData.getGameData();
+		offset = gameData.getPlayer().getPosition();
 		repaint();
 	}
 	
@@ -62,7 +65,7 @@ public class GameScene extends JPanel {
 		for (Entry<Class<? extends GameObject>, Vector2> gameObject : gameObjects.entrySet())
 		{
 			Image image = drawBinding.get(gameObject.getKey());
-			int x = gameObject.getValue().getX();
+			int x = gameObject.getValue().getX();// + offset.getX();
 			int y = gameObject.getValue().getY();
 			graphics.drawImage(image, x, y, null);
 		}

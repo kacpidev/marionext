@@ -10,7 +10,8 @@ public class Vector2 {
 	private int x;
 	private int y;
 	
-	public Vector2(){
+	public Vector2()
+	{
 		this.x = 0;
 		this.y = 0;
 	}
@@ -21,11 +22,13 @@ public class Vector2 {
 		this.y = y;
 	}
 
-	public int getX(){
+	public int getX()
+	{
 		return x;
 	}
 
-	public int getY(){
+	public int getY()
+	{
 		return y;
 	}
 	
@@ -41,4 +44,17 @@ public class Vector2 {
 		this.y *= m;
 	}
 	
+	public int getLength()
+	{
+		return x^2 + y^2;
+	}
+	
+	public void normalize()
+	{
+		int length = getLength();
+		if(length != 0){
+			x /= length;
+			y /= length;
+		}
+	}	
 }

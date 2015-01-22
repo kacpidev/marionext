@@ -43,9 +43,9 @@ public class Window extends JFrame {
 		add(gameScene, BorderLayout.CENTER);
 	}
 
-	public void draw(GameData gameData) {
-		System.out.println("draw");
-		gameScene.draw(gameData.getGameData());
+	public void draw(GameData gameData) 
+	{
+		gameScene.draw(gameData);
 	}
 
 }

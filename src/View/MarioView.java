@@ -73,6 +73,7 @@ public class MarioView
 	{
 		this.eventQueue = eventQueue;
 		window = new Window(eventQueue);
+		window.addKeyListener(new KeyboardListener(eventQueue));
 		window.setVisible(true);
 		timerListener = new TimerListener(eventQueue);
 		timer = new Timer(100, timerListener);
