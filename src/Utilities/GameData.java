@@ -2,6 +2,7 @@ package Utilities;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Vector;
 
 import Model.GameObject;
 
@@ -10,19 +11,26 @@ import Model.GameObject;
  */
 public class GameData {
 
-	private final Map<Class<? extends GameObject>, Vector2> gameObjects;
-
+	private final Vector<GameObject> gameObjects = new Vector<GameObject>(); 
+	
 	public GameData()
 	{
-		gameObjects = new HashMap<Class<? extends GameObject>, Vector2>();
+		
 	}
 	
 	public Map<Class<? extends GameObject>, Vector2> getGameData(){
-		return gameObjects;
+		Map<Class<? extends GameObject>, Vector2> classBinding = new HashMap<Class<? extends GameObject>, Vector2>();
+		
+		for(GameObject gameObject : gameObjects)
+		{
+			classBinding.put(gameObject.getClass(), gameObject.getPosition());
+		}
+				
+		return classBinding;
 	}
 	
 	public void addGameObject(GameObject gameObject)
 	{
-		gameObjects.put(gameObject.getClass(), gameObject.getPosition());
+		gameObjects.addElement(gameObject);
 	}
 }
