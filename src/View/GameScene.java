@@ -2,10 +2,12 @@ package View;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.Image;
-import java.util.Vector;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
 
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 import Model.Brick;
@@ -19,9 +21,9 @@ import Utilities.Vector2;
 public class GameScene extends JPanel {
 
 	private static final long serialVersionUID = 3L;
-	private Vector<GameObject> staticGameObjects;
-	private Vector<GameObject> dynamicGameObjects;
-	
+	private Map<Class<? extends GameObject>, Vector2> gameObjects = new HashMap<Class<? extends GameObject>, Vector2>();
+	private final Map<Class<? extends GameObject>, Image> drawBinding = new HashMap<Class<? extends GameObject>, Image>();
+		
 	/*
 	 * Konstruktor
 	 * 
@@ -29,44 +31,40 @@ public class GameScene extends JPanel {
 	 */
 	public GameScene()
 	{
-		staticGameObjects = new Vector<GameObject>();
-		dynamicGameObjects = new Vector<GameObject>();
-		staticGameObjects.addElement(new Brick(new Vector2(0,240)));
+		Image image = new ImageIcon("C:\\_PROJECTS\\JAVA\\Mario\\src\\Brick.png").getImage();
+		drawBinding.put(Brick.class, image);
 	}
 	
 	/*
-	 * rysowanie poziomu
+	 * funkcja rysuj¹ca t³o 
+	 * 
 	 */
-	
 	final private void drawBackground(final Graphics graphics)
 	{
 		graphics.setColor(new Color(240, 120, 120));
         graphics.fillRect(0, 0, 640, 480);
 	}
-	
-	public void update(){
-		for (GameObject gameObject : dynamicGameObjects)
-		{
-			gameObject.update(0.01f);
-		}
+		
+	public void draw(final Map<Class<? extends GameObject>, Vector2> gameObjects)
+	{
+		this.gameObjects = gameObjects;
+		repaint();
 	}
 	
+	/*
+	 * Rysujemy obiekty na scenie:
+	 * 
+	 */	
 	public void paint(final Graphics graphics)
 	{
 		super.paintComponent(graphics);
 		drawBackground(graphics);
-		drawObjects(staticGameObjects, graphics);
-		drawObjects(dynamicGameObjects, graphics);
-    }
-	
-	public void drawObjects(Vector<GameObject> gameObjects, Graphics graphics)
-	{
-		for (GameObject gameObject : gameObjects)
+		for (Entry<Class<? extends GameObject>, Vector2> gameObject : gameObjects.entrySet())
 		{
-			Image image = gameObject.getImage();
-			int x = gameObject.getPosition().getX();
-			int y = gameObject.getPosition().getY();
+			Image image = drawBinding.get(gameObject.getKey());
+			int x = gameObject.getValue().getX();
+			int y = gameObject.getValue().getY();
 			graphics.drawImage(image, x, y, null);
-		}	
-	}
+		}
+    }
 }

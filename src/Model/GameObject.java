@@ -9,11 +9,25 @@ import Utilities.Vector2;
  * i posiada metody s³u¿¹ce jego poruszaniu
  */
 
-abstract public class GameObject {
+public class GameObject {
 	
-	protected Image image;
-	
+
 	protected Vector2 position;
+	
+	public GameObject()
+	{
+		this.position = new Vector2();
+	}
+	
+	public GameObject(Vector2 position)
+	{
+		this.position = position;
+	}
+	
+	public GameObject(int x, int y)
+	{
+		this.position = new Vector2(x,y);
+	}
 	
 	public Vector2 getPosition()
 	{
@@ -28,16 +42,6 @@ abstract public class GameObject {
 	public void setPosition(Vector2 position)
 	{
 		this.position = position;
-	}
-
-	/*
-	 * image getter 
-	 * 
-	 * @author Kacper
-	 */
-	public Image getImage()
-	{
-		return image;
 	}
 
 	public void update(float deltaTime) 

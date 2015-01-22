@@ -2,31 +2,27 @@ package Model;
 
 import java.util.Vector;
 
+import Utilities.GameData;
 import View.GameScene;
 
 public class MarioModel {
 
-	private Vector<GameObject> gameObjects;
+	private final GameData gameData;
 	
 	public MarioModel()
 	{
+		gameData = new GameData();
+		
+		gameData.addGameObject(new Brick());
 	}
 	
-	public void setGameScene(Vector<GameObject> gameObjects)
+	public GameData getGameData()
 	{
-		this.gameObjects = gameObjects;
+		return gameData;
 	}
 	
-	public Vector<GameObject> getGameObjects()
-	{
-		return gameObjects;
-	}
-
 	public void update()
 	{
-		for(GameObject gameObject : gameObjects)
-		{
-			gameObject.update(1/60);
-		}
+
 	}	
 }

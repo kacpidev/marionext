@@ -11,6 +11,7 @@ import javax.swing.Timer;
 import Event.MarioEvent;
 import Event.TimerEvent;
 import Model.GameObject;
+import Utilities.GameData;
 
 /*
  * widok aplikacji
@@ -73,7 +74,6 @@ public class MarioView
 		this.eventQueue = eventQueue;
 		window = new Window(eventQueue);
 		window.setVisible(true);
-		refresh();
 		timerListener = new TimerListener(eventQueue);
 		timer = new Timer(100, timerListener);
 		timer.setRepeats(true);
@@ -81,13 +81,13 @@ public class MarioView
 
 	}
 	
-	public void refresh()
+	public void refresh(GameData gameData)
 	{
 		SwingUtilities.invokeLater(new Runnable() {
 			
 			@Override
 			public void run() {
-				window.draw();
+				window.draw(gameData);
 			}
 		});
 	}

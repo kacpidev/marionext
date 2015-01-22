@@ -26,7 +26,6 @@ public class Mario {
 			final BlockingQueue<MarioEvent> eventQueue = new LinkedBlockingQueue<MarioEvent>();
 			final MarioView view = new MarioView(eventQueue);
 			final MarioController controller = new MarioController(model, view, eventQueue);
-			System.out.println("kontrolujemy");
 			controller.control();		
 		}
 		catch(RuntimeException e)

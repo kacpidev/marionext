@@ -8,6 +8,7 @@ import javax.swing.*;
 
 import Event.MarioEvent;
 import Model.GameObject;
+import Utilities.GameData;
 
 public class Window extends JFrame {
 	
@@ -42,10 +43,9 @@ public class Window extends JFrame {
 		add(gameScene, BorderLayout.CENTER);
 	}
 
-	public void draw() {
+	public void draw(GameData gameData) {
 		System.out.println("draw");
-		gameScene.update();
-		gameScene.repaint();
+		gameScene.draw(gameData.getGameData());
 	}
 
 }

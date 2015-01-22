@@ -8,7 +8,6 @@ public class TimerAction extends MarioAction {
 
 	@Override
 	public void work(MarioView view, MarioModel model, MarioEvent event) {
-		view.refresh();
-		System.out.println("akcja zegara");
+		view.refresh(model.getGameData());
 	}
 }
