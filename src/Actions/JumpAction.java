@@ -8,8 +8,7 @@ public class JumpAction extends MarioAction {
 
 	@Override
 	public void work(MarioView view, MarioModel model, MarioEvent event) {
-		// TODO Auto-generated method stub
-
+		model.getGameData().getPlayer().jump();
 	}
 
 }

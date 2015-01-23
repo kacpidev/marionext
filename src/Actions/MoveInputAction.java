@@ -8,17 +8,22 @@ import View.MarioView;
 
 public class MoveInputAction extends MarioAction {
 
-	private Vector2 deltaPosition;
+	private double deltaX;
 	
-	public MoveInputAction(Vector2 deltaPosition)
+	public MoveInputAction(double deltaX)
 	{
-		this.deltaPosition = deltaPosition;
+		this.deltaX = deltaX;
+	}
+	
+	public MoveInputAction()
+	{
+		this.deltaX = 0.0;
 	}
 	
 	@Override
 	public void work(MarioView view, MarioModel model, MarioEvent event) {
 		Player player = model.getGameData().getPlayer();
-		player.setDeltaPosition(deltaPosition);
+		player.setDeltaX(deltaX);
 	}
 
 }

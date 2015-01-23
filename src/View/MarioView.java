@@ -63,7 +63,7 @@ public class MarioView
 	private final Window window;
 	private final TimerListener timerListener;
 	private final Timer timer;
-	private static int FPS = 60;
+	private final int FPS = 60;
 	/*
 	 * konstruktor
 	 * 
@@ -76,7 +76,7 @@ public class MarioView
 		window.addKeyListener(new KeyboardListener(eventQueue));
 		window.setVisible(true);
 		timerListener = new TimerListener(eventQueue);
-		timer = new Timer(100, timerListener);
+		timer = new Timer(1000/FPS, timerListener);
 		timer.setRepeats(true);
 		timer.start();				
 

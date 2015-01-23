@@ -6,12 +6,15 @@ import java.awt.Image;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Vector;
 
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 import Model.Brick;
+import Model.DestroyableBrick;
 import Model.GameObject;
+import Model.Mushroom;
 import Model.Player;
 import Utilities.GameData;
 import Utilities.Vector2;
@@ -23,7 +26,7 @@ import Utilities.Vector2;
 public class GameScene extends JPanel {
 
 	private static final long serialVersionUID = 3L;
-	private Map<Class<? extends GameObject>, Vector2> gameObjects = new HashMap<Class<? extends GameObject>, Vector2>();
+	private Map<Class<? extends GameObject>, Vector<Vector2>> gameObjects = new HashMap<Class<? extends GameObject>, Vector<Vector2>>();
 	private final Map<Class<? extends GameObject>, Image> drawBinding = new HashMap<Class<? extends GameObject>, Image>();
 	private Vector2 offset;
 	/*
@@ -33,7 +36,9 @@ public class GameScene extends JPanel {
 	 */
 	public GameScene()
 	{
+		drawBinding.put(DestroyableBrick.class, new ImageIcon("C:\\_PROJECTS\\JAVA\\Mario\\src\\View\\Resources\\DestroyableBrick.png").getImage());
 		drawBinding.put(Player.class, new ImageIcon("C:\\_PROJECTS\\JAVA\\Mario\\src\\View\\Resources\\Mario.png").getImage());
+		drawBinding.put(Mushroom.class, new ImageIcon("C:\\_PROJECTS\\JAVA\\Mario\\src\\View\\Resources\\Mushroom.png").getImage());
 		drawBinding.put(Brick.class, new ImageIcon("C:\\_PROJECTS\\JAVA\\Mario\\src\\Brick.png").getImage());
 	}
 	
@@ -62,12 +67,15 @@ public class GameScene extends JPanel {
 	{
 		super.paintComponent(graphics);
 		drawBackground(graphics);
-		for (Entry<Class<? extends GameObject>, Vector2> gameObject : gameObjects.entrySet())
+		for (Entry<Class<? extends GameObject>, Vector<Vector2>> gameObject : gameObjects.entrySet())
 		{
 			Image image = drawBinding.get(gameObject.getKey());
-			int x = gameObject.getValue().getX();// + offset.getX();
-			int y = gameObject.getValue().getY();
-			graphics.drawImage(image, x, y, null);
+			for (Vector2 position : gameObject.getValue())
+			{
+				int x = (int) position.getX();// + offset.getX();
+				int y = (int) position.getY();
+				graphics.drawImage(image, x, y, null);
+			}
 		}
-    }
+	}
 }

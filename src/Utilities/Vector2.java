@@ -7,8 +7,8 @@ package Utilities;
  */
 
 public class Vector2 {
-	private int x;
-	private int y;
+	private double x;
+	private double y;
 	
 	public Vector2()
 	{
@@ -22,14 +22,29 @@ public class Vector2 {
 		this.y = y;
 	}
 
-	public int getX()
+	public Vector2(double x, double y) {
+		this.x = x;
+		this.y = y;
+	}
+
+	public double getX()
 	{
 		return x;
 	}
 
-	public int getY()
+	public double getY()
 	{
 		return y;
+	}
+	
+	public void setX(double x)
+	{
+		this.x = x;
+	}
+	
+	public void setY(double y)
+	{
+		this.y = y;
 	}
 	
 	public void add(Vector2 second)
@@ -44,14 +59,14 @@ public class Vector2 {
 		this.y *= m;
 	}
 	
-	public int getLength()
+	public double getLength()
 	{
-		return x^2 + y^2;
+		return x*x + y*y;
 	}
 	
 	public void normalize()
 	{
-		int length = getLength();
+		double length = getLength();
 		if(length != 0){
 			x /= length;
 			y /= length;

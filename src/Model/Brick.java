@@ -6,8 +6,12 @@ import Utilities.Vector2;
 
 public class Brick extends GameObject {
 
-	public Brick(int i, int j) {
-		super(i,j);	
+	public Brick(int x, int y) {
+		super(x,y);	
+	}
+
+	public Brick(int x, int y, int w, int h) {
+		super(x,y,w,h);
 	}
 
 }

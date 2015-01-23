@@ -57,10 +57,10 @@ public class MarioController
 	private void connectEventsWithActions()
 	{
 		eventAction.put(TimerEvent.class, new TimerAction());
-		eventAction.put(LeftKeyDownEvent.class, new MoveInputAction(new Vector2(-1,0)));
-		eventAction.put(LeftKeyUpEvent.class, new MoveInputAction(new Vector2(0,0)));
-		eventAction.put(RightKeyDownEvent.class, new MoveInputAction(new Vector2(1,0)));
-		eventAction.put(RightKeyUpEvent.class, new MoveInputAction(new Vector2(0,0)));
+		eventAction.put(LeftKeyDownEvent.class, new MoveInputAction(-2));
+		eventAction.put(LeftKeyUpEvent.class, new MoveInputAction());
+		eventAction.put(RightKeyDownEvent.class, new MoveInputAction(2));
+		eventAction.put(RightKeyUpEvent.class, new MoveInputAction());
 		eventAction.put(JumpKeyDownEvent.class, new JumpAction());
 	}
 	

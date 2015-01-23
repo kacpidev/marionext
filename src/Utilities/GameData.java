@@ -31,18 +31,36 @@ public class GameData {
 		this.dynamicGameObjects = dynamicGameObjects;
 	}
 	
-	public Map<Class<? extends GameObject>, Vector2> getGameData(){
-		Map<Class<? extends GameObject>, Vector2> classBinding = new HashMap<Class<? extends GameObject>, Vector2>();
+	public Map<Class<? extends GameObject>, Vector<Vector2>> getGameData(){
+		Map<Class<? extends GameObject>, Vector<Vector2>> classBinding = new HashMap<Class<? extends GameObject>, Vector<Vector2>>();
 		
 		for(GameObject gameObject : gameObjects)
 		{
-			classBinding.put(gameObject.getClass(), gameObject.getPosition());
+			Vector<Vector2> positions;
+			if (classBinding.get(gameObject.getClass()) == null)
+			{
+				positions = new Vector<Vector2>();
+			}
+			else
+			{
+				positions = classBinding.get(gameObject.getClass());
+			}
+			positions.add(gameObject.getPosition());
+			classBinding.put(gameObject.getClass(), positions);
 		}
-		
 		for(GameObject gameObject : dynamicGameObjects)
 		{
-			classBinding.put(gameObject.getClass(), gameObject.getPosition());
-		}
+			Vector<Vector2> positions;
+			if (classBinding.get(gameObject.getClass()) == null)
+			{
+				positions = new Vector<Vector2>();
+			}
+			else
+			{
+				positions = classBinding.get(gameObject.getClass());
+			}
+			positions.add(gameObject.getPosition());
+			classBinding.put(gameObject.getClass(), positions);		}
 		
 		return classBinding;
 	}
